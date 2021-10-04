@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  api gateway event
+
+Parameters:
+  BuildId:
+    Type: String
+    Default: unknown
+
+Resources:
+  GetProducts:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: com.hello.Handler::handleRequest
+      Runtime: java11
+      Events:
+        GetProductsAPI:
+          Type: Api
+          Properties:
+            Path: /api
+            Method: get
