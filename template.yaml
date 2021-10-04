@@ -1,23 +1,22 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  api gateway event
+  http api
 
-Parameters:
-  BuildId:
-    Type: String
-    Default: unknown
+Globals:
+  Function:
+    Timeout: 60
 
 Resources:
-  GetProducts:
+  LambdaFunctionHttp:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
       Handler: com.hello.Handler::handleRequest
       Runtime: java11
       Events:
-        GetProductsAPI:
-          Type: Api
+        HelloWorld:
+          Type: HttpApi
           Properties:
             Path: /api
             Method: get
